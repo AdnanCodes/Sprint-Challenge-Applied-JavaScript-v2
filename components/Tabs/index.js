@@ -10,7 +10,6 @@
 
 //Link back to HTML to DOM
 const topics = document.querySelector('.topics')
-console.log(topics)
 
 axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
 .then(data => {
@@ -18,14 +17,14 @@ axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
     //Required data is captured into Variable
     const captureTopics = data.data.topics
     //Then using available, DOM element is created and added to back to HTML
-    captureTopics.forEach(item => topics.appendChild(TabDOM(item)))
+    captureTopics.forEach(item => topics.appendChild(createTab(item)))
     
 })
 .catch(error => {
     console.log('Error with processing, see here ', error)
 })
 
-function TabDOM(text){
+function createTab(text){
 
     const tab = document.createElement('div')
 
