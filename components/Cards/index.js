@@ -22,15 +22,53 @@
 const cards = document.querySelector('.cards-container')
 
 axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
-.then(data => {
-    const articles = data.data.articles
-    console.log(articles)
-})
-.catch(error => {
-    console.log('Error with processing articles, see here ', error)
-})
+    .then(data => {
 
-function createCard(articles){
+        const articles = data.data.articles
+        console.log('this is the article object ', articles)
 
-    
+        //articles.forEach(topics =>topics.forEach(card => cards.appendChild(createCard(card))))
+
+
+        const topics = Object.entries(articles)
+
+        for (const [topic, card] of topics) {
+
+            card.forEach(author => { cards.appendChild(createCard(author)) })
+        }
+
+    })
+    .catch(error => {
+        console.log('Error with processing articles, see here ', error)
+    })
+
+function createCard(topics) {
+
+    //Setting DOM Elements
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const author = document.createElement('div')
+    const imgContainer = document.createElement('div')
+    const img = document.createElement('img')
+    const authorName = document.createElement('span')
+
+    //Setting up DOM structure to TML
+    card.appendChild(headline)
+    card.appendChild(author)
+    author.appendChild(imgContainer)
+    imgContainer.appendChild(img)
+    author.appendChild(authorName)
+
+    //Setting Class names to Elements
+    card.classList.add('card')
+    headline.classList.add('headline')
+    author.classList.add('author')
+    imgContainer.classList.add('img-container')
+
+    //Setting up content and sources for elements
+    headline.textContent = topics.headline
+    img.src = topics.authorPhoto
+    authorName.textContent = `By ${topics.authorName}`
+
+    return card
 }
