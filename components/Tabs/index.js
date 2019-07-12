@@ -7,3 +7,15 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
+
+//Link back to HTML to DOM
+const topics = document.querySelector('.topics')
+
+axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
+.then(data => {
+    console.log('Output from link', data)
+    
+})
+.catch(error => {
+    console.log('Error with processing, see here ', error)
+})
