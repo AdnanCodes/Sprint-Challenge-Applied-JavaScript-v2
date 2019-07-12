@@ -10,7 +10,7 @@
 // And add it to the DOM in the .headerContainer component
 
 const headerContainer = document.querySelector('.header-container')
-
+//DOM elements to be linked at target
 headerContainer.appendChild(Header())
 
 function Header() {

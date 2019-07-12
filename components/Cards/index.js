@@ -24,14 +24,13 @@ const cards = document.querySelector('.cards-container')
 axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
     .then(data => {
 
+        //Storing the required data into local variable
         const articles = data.data.articles
-        console.log('this is the article object ', articles)
 
-        //articles.forEach(topics =>topics.forEach(card => cards.appendChild(createCard(card))))
-
-
+        //Converting the data into array for easier data manipulation
         const topics = Object.entries(articles)
 
+        //Traversing through the array and using DOM function to create elements
         for (const [topic, card] of topics) {
 
             card.forEach(author => { cards.appendChild(createCard(author)) })
