@@ -18,7 +18,7 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-
+//Link back to HTML when DOM has to be attached
 const cards = document.querySelector('.cards-container')
 
 axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
